@@ -1,0 +1,9 @@
+[submodule "CryoLauncher"]
+	path = CryoLauncher
+	url = https://github.com/ICESEE-project/CryoLauncher
+[submodule "ICESEE-Containers"]
+	path = ICESEE-Containers
+	url = https://github.com/ICESEE-project/ICESEE-Containers
+[submodule "ICESEE-Spack"]
+	path = ICESEE-Spack
+	url = https://github.com/ICESEE-project/ICESEE-Spack
