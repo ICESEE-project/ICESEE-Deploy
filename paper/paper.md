@@ -12,13 +12,13 @@ tags:
   - coupling MPI-applications
 authors:
   - name: Brian Kyanjo
-    orcid: 000-0002-0995-1051
+    orcid: 0000-0002-0995-1051
     equal-contrib: true
-    affiliation: 1
+    affiliation: "1"
   - name: Alexander A. Robel
     orcid: 0000-0003-4520-0105
     equal-contrib: true
-    affiliation: 2
+    affiliation: "2"
   # - name: Third Author
   #   orcid: 0000-0000-0000-0000
   #   affiliation:  "1, 2"
