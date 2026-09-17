@@ -288,12 +288,7 @@ failures. SQLite supports the current single-node deployment; broader
 scaling requires shared persistence and durable task/session storage.
 Packaged Connector binaries must match the relay protocol, and reference
 container images need publication under a project registry namespace.
-Model-specific result support and archival provenance remain incomplete.
-
-The codebase is
-distributed under the MIT License; a subset of source files inherited from
-earlier scaffolding still carries SPDX BSD-3-Clause identifiers, which
-remains an open reconciliation task before a formal archival release.
+Model-specific result support and archival provenance remain incomplete. The codebase is distributed under the MIT License.
 
 # Research impact statement
 
