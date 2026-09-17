@@ -109,10 +109,13 @@ workflow. Deployable applications are declared in a registry rather than
 hard-coded into a single service.
 
 The platform standardizes what an application shares, not how it presents
-itself. A compute backend implements a common submission, status, log, and
-termination lifecycle independent of any one frontend. Scientific
-configuration is therefore separated from execution, while backend-specific
-resource and readiness checks remain necessary.
+itself. Scientific configuration is separated from execution, so a given
+configuration is portable across execution environments, while
+backend-specific resource and readiness checks remain necessary.
+CryoLauncher and ICESEE each implement their own submission, status, log,
+and termination lifecycle today rather than through one shared execution
+adapter; both reuse the same Connector/Relay connectivity and AWS
+account-onboarding layer (Figure 1).
 
 ![CryoStack's layered architecture. Four scientific applications reuse platform services and shared contracts. Execution support is workflow-specific; the Local, Remote-HPC, and AWS Batch backends do not apply to every application. Connector/Relay also supports private institutional connectivity for Cloud workloads, a path not shown explicitly here.](cryostack_architecture.svg){#fig:architecture}
 
@@ -140,9 +143,13 @@ Firedrake-based notebooks or scripts without that dependency.
 **ICESEE** supplies ensemble state and parameter estimation
 [@kyanjo2026icesee]; CryoStack does not reimplement its filtering algorithms.
 ICESEE organizes execution as Local, Remote, or Cloud, with Auto-config ·
-Beta available alongside it. Local execution runs a selected workflow in
-the hosting notebook; Remote and Cloud reuse the shared execution
-infrastructure. ICESEE can wrap ISSM, Icepack, or a synthetic model such as
+Beta available alongside it. Local execution runs a selected workflow as a
+Python subprocess on the application host; Remote and Cloud run through
+ICESEE's own submission
+and result-handling implementation, sharing the platform's Direct-SSH/
+Connector connectivity and AWS account-onboarding layer with CryoLauncher
+rather than a common execution or result pipeline. ICESEE can wrap ISSM,
+Icepack, or a synthetic model such as
 Lorenz-96 as its forecast model. Dependencies follow that choice: an
 ISSM-based workflow requires MATLAB, whereas Icepack and Lorenz-96 do not.
 ICESEE's assimilation diagnostics do not yet use CryoStack's shared result
@@ -205,8 +212,10 @@ needs confirmation.
 
 CryoStack's Remote path lets a user bring computing resources they already
 have access to, such as an institutional cluster or workstation, into a
-CryoLauncher or ICESEE run. A scheduler-aware launcher manages submission,
-status, logs, and result retrieval through the shared experiment workspace.
+CryoLauncher or ICESEE run. Each application's own scheduler-aware launcher
+manages submission, status, logs, and result retrieval; CryoLauncher and
+ICESEE implement this separately today, sharing the Direct/Connector access
+pattern below rather than one launcher or one result representation.
 
 Two access modes reach the target resource. **Direct** invokes SSH and file
 transfer from the application host when network policy and reachability
@@ -227,7 +236,7 @@ institutional license endpoint; CryoStack handles the cloud-side license
 configuration and connectivity. Cloud execution that does not need private
 institutional connectivity does not require Connector.
 
-![The Connector/Relay's Remote-HPC path: CryoLauncher or ICESEE reaches institutional resources through the user's authorized local access. The same infrastructure supports private-service access for Cloud workloads, including ISSM's institutional MATLAB license; that Cloud path is not depicted.](cryostack_hpc_bridge.svg){#fig:bridge}
+![CryoStack's four applications and their shared connectivity. CryoLauncher and ICESEE each implement their own Remote and Cloud execution; both reach an institutional or HPC resource by direct SSH or through the shared Connector/Relay. The same Connector/Relay can also carry a Cloud workload's connection to a private institutional service (dashed) -- the demonstrated case is CryoLauncher's ISSM workflow on AWS reaching the Georgia Tech MATLAB license. Frozen Legacies and LIVIST are equally first-class CryoStack applications with their own interfaces, not organized around Local/Remote/Cloud.](cryostack_hpc_bridge.svg){#fig:bridge}
 
 # Cloud execution on AWS
 
@@ -250,8 +259,12 @@ shared result package, retrieval, and visualization. These runs accessed
 the configured Georgia Tech institutional MATLAB license through the same
 Connector/Relay infrastructure used for Remote access. This validates one
 institutional Cloud/Connector configuration rather than arbitrary
-license-server arrangements. ICESEE Cloud execution has not been separately
-validated for ISSM-based workflows.
+license-server arrangements. ICESEE's Cloud interface exposes the same
+MATLAB license field as CryoLauncher's, for interface consistency, but that
+connectivity is not currently wired into ICESEE's own Cloud submission
+path: an ISSM-coupled ICESEE Cloud workflow is not operational today,
+independently of its example/process restriction to Lorenz-96 at a single
+process.
 
 Two environment strategies complement these execution paths. ICESEE-Spack
 uses Spack [@gamblin2015spack] to resolve source builds against site
@@ -288,9 +301,11 @@ CryoStack's evidence to date is functional and architectural rather than
 adoption-based. It integrates ISSM and Icepack modeling, ICESEE's ensemble
 data assimilation [@kyanjo2026icesee], a historical radar catalog with
 geolocation and interpretation tools, and a deployed radar/borehole
-temperature application. Shared execution and experiment services support
-modeling workflows, while dataset adapters and application deployment
-support the observational applications.
+temperature application. Execution and experiment tracking, implemented
+separately by CryoLauncher and ICESEE over shared connectivity and
+onboarding infrastructure, support the two modeling applications, while
+dataset adapters and application deployment support the observational
+applications.
 
 For a research group, supported model workflows retain their configuration
 and experiment history across available computing resources rather than
