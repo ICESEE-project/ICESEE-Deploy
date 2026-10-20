@@ -110,7 +110,7 @@ Evidence is functional and architectural rather than adoption-based: CryoStack i
 
 # AI usage disclosure
 
-Codex (OpenAI, GPT-5.6) and Claude (Anthropic, Sonnet 5) assisted with code documentation and selected user interface development; Codex also assisted with manuscript compression. The authors reviewed, edited, and validated AI-assisted outputs and made the core design decisions.
+Codex (OpenAI, GPT-5.6) and Claude (Anthropic, Sonnet 5) assisted with code documentation and selected user interface development. The authors reviewed, edited, and validated AI-assisted outputs and made the core design decisions.
 
 # Conflicts of interest
 
