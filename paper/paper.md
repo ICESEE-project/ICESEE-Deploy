@@ -1,5 +1,5 @@
 ---
-title: 'CryoStack: A modular cyberinfrastructure stack for cryosphere data, models, data assimilation, and heterogeneous computing'
+title: 'CryoStack-v1.0.0: A modular cyberinfrastructure stack for cryosphere data, models, data assimilation, and heterogeneous computing'
 tags:
   - Python
   - cryosphere
