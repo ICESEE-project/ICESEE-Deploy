@@ -5,6 +5,7 @@
 \usepackage{microtype}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \usepackage[backend=bibtex,style=authoryear,natbib=true,maxcitenames=2]{biblatex}
 \addbibresource{paper.bib}
@@ -24,6 +25,8 @@
 \hypersetup{colorlinks=true,linkcolor=cryo,citecolor=cryo,urlcolor=cryo}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
+\widowpenalty=10000
+\clubpenalty=10000
 \setcounter{secnumdepth}{0}
 \renewcommand{\familydefault}{\sfdefault}
 \setkeys{Gin}{width=\linewidth,totalheight=0.68\textheight,keepaspectratio}
@@ -76,14 +79,18 @@
 % body: GitHub Actions renders the real JOSS PDF from paper.md directly.
 % If the authors/affiliations/date in paper.md's YAML block change, update
 % this block to match; nothing here feeds back into paper.md.
-\title{\textbf{CryoStack: A modular cyberinfrastructure stack for cryosphere data, models, data assimilation, and heterogeneous computing}}
-\author{Brian Kyanjo\thanks{Corresponding author: bkyanjo3@gatech.edu; ORCID 0000-0002-0995-1051}, \quad Alexander A. Robel\thanks{ORCID 0000-0003-4520-0105}, \quad Angelo S. Tarzona \thanks{ORCID 0000-0002-3464-7537},  \quad Eliza J. Dawson \thanks{ORCID 0000-0002-2662-3201}, \quad and \quad Winnie Chu \thanks{ORCID 0000-0002-2662-3201}\\
+\title{\textbf{CryoStack-v1.0.0: A modular cyberinfrastructure stack for cryosphere data, models, data assimilation, and heterogeneous computing}}
+\author{Brian Kyanjo\thanks{Corresponding author: bkyanjo3@gatech.edu; ORCID 0000-0002-0995-1051}, \quad Alexander A. Robel\thanks{ORCID 0000-0003-4520-0105}, \quad Angelo S. Tarzona \thanks{ORCID 0000-0002-3464-7537}\\ Eliza J. Dawson \thanks{ORCID 0000-0002-2662-3201}, \quad and \quad Winnie Chu \thanks{ORCID 0000-0002-8107-7450}\\
 \small School of Earth and Atmospheric Sciences, Georgia Institute of Technology}
-\date{2 September 2026}
+\date{19 October 2026}
 
 \begin{document}
-% \maketitle
+\maketitle
 
-\markdownInput{paper.md}
+\markdownInput{output/paper_body.md}
+\begingroup
+\small
+\setlength{\bibitemsep}{1pt}
 \printbibliography[heading=none]
+\endgroup
 \end{document}

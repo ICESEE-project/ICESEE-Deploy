@@ -1,0 +1,5 @@
+# Minimal dependencies for the v1.0.0 offline acceptance command.
+# The application UI, scientific solvers, and full test suite need their own environments.
+aiohttp==3.14.5
+ipython==9.17.1
+ipywidgets==8.1.9

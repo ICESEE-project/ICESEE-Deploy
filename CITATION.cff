@@ -1,0 +1,41 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Please cite this deployment snapshot and the component revisions used.",
+  "type": "software",
+  "title": "ICESEE-Deploy: CryoStack deployment and reproducibility",
+  "authors": [
+    {
+      "family-names": "Kyanjo",
+      "given-names": "Brian",
+      "orcid": "https://orcid.org/0000-0002-0995-1051",
+      "affiliation": "Georgia Institute of Technology"
+    },
+    {
+      "family-names": "Robel",
+      "given-names": "Alexander A.",
+      "orcid": "https://orcid.org/0000-0003-4520-0105",
+      "affiliation": "Georgia Institute of Technology"
+    },
+    {
+      "family-names": "Tarzona",
+      "given-names": "Angelo S.",
+      "orcid": "https://orcid.org/0000-0002-3464-7537",
+      "affiliation": "Georgia Institute of Technology"
+    },
+    {
+      "family-names": "Dawson",
+      "given-names": "Eliza J.",
+      "orcid": "https://orcid.org/0000-0002-2662-3201",
+      "affiliation": "Georgia Institute of Technology"
+    },
+    {
+      "family-names": "Chu",
+      "given-names": "Winnie",
+      "orcid": "https://orcid.org/0000-0002-8107-7450",
+      "affiliation": "Georgia Institute of Technology"
+    }
+  ],
+  "repository-code": "https://github.com/ICESEE-project/ICESEE-Deploy",
+  "url": "https://cryostack.eas.gatech.edu/",
+  "license": "BSD-2-Clause"
+}
